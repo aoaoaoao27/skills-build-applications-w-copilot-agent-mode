@@ -1,6 +1,6 @@
 ---
-mode: 'agent'
-model: GPT-5.5
+agetnt: 'agent'
+model: Claude Sonnet 5 (copilot)
 description: 'Create the Node.js logic tier for the Octofit multi-tier application'
 ---
 

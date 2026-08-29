@@ -1,8 +1,12 @@
-import { getApiUrl } from '../config/api';
 import { useFetchData } from '../hooks/useFetchData';
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
+const API_URL = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/teams/`
+  : 'http://localhost:8000/api/teams/';
+
 function Teams() {
-  const { data: teams, error, loading } = useFetchData(getApiUrl('teams'));
+  const { data: teams, error, loading } = useFetchData(API_URL);
 
   if (loading) return <p>Loading teams…</p>;
   if (error) return <p className="text-danger">Error loading teams: {error}</p>;

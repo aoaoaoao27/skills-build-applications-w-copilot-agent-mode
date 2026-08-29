@@ -1,8 +1,12 @@
-import { getApiUrl } from '../config/api';
 import { useFetchData } from '../hooks/useFetchData';
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
+const API_URL = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/leaderboard/`
+  : 'http://localhost:8000/api/leaderboard/';
+
 function Leaderboard() {
-  const { data: entries, error, loading } = useFetchData(getApiUrl('leaderboard'));
+  const { data: entries, error, loading } = useFetchData(API_URL);
 
   if (loading) return <p>Loading leaderboard…</p>;
   if (error) return <p className="text-danger">Error loading leaderboard: {error}</p>;

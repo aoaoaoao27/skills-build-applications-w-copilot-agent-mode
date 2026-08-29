@@ -1,8 +1,12 @@
-import { getApiUrl } from '../config/api';
 import { useFetchData } from '../hooks/useFetchData';
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
+const API_URL = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/users/`
+  : 'http://localhost:8000/api/users/';
+
 function Users() {
-  const { data: users, error, loading } = useFetchData(getApiUrl('users'));
+  const { data: users, error, loading } = useFetchData(API_URL);
 
   if (loading) return <p>Loading users…</p>;
   if (error) return <p className="text-danger">Error loading users: {error}</p>;
